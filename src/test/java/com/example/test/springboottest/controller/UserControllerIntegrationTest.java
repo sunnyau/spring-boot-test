@@ -1,6 +1,6 @@
 package com.example.test.springboottest.controller;
 
-import com.example.test.springboottest.SpringBootTestApplication;
+import com.example.test.springboottest.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @RunWith(SpringRunner.class)
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-        classes = SpringBootTestApplication.class
+        classes = Application.class
 )
 @AutoConfigureMockMvc
 @TestPropertySource(locations = "classpath:application-test.properties")
