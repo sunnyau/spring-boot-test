@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Function;
 
 import static java.util.stream.Collectors.toList;
 
@@ -22,10 +23,7 @@ public class UserService {
 
     public List<UserView> getAll() {
         List<User> userList = userRepository.findAll();
-        return userList.stream().map(this::convertUserToUserView).collect(toList());
-    }
-
-    private UserView convertUserToUserView( User user ) {
-        return UserView.builder().id(user.getId()).name(user.getName()).title(user.getTitle()).build();
+        Function<User,UserView> convertUserToUserView = user -> UserView.builder().id(user.getId()).name(user.getName()).title(user.getTitle()).build();
+        return userList.stream().map(convertUserToUserView).collect(toList());
     }
 }
