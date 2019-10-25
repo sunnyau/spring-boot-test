@@ -1,0 +1,65 @@
+openapi: "3.0.0"
+servers:
+
+info:
+  description: Our test project
+  version: 1.0.0
+  title: Our test project
+
+paths:
+  /health:
+    get:
+      description: Health check
+      responses:
+        200:
+          description: Service Healthy
+
+  /getPayment:
+    get:
+      description: Get payment
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+
+  /getPayment/{interest}:
+    get:
+      description: Get payment
+      responses:
+        200:
+          description: get payment
+  /user/all:
+    get:
+      description: Get users
+      responses:
+        200:
+          description: get users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserViews'
+
+components:
+  schemas:
+
+    Payment:
+      type: object
+      properties:
+        amount:
+          type: string
+    UserViews:
+      type: array
+      items:
+        $ref : '#/components/schemas/UserView'
+    UserView:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        title:
+          type: string
